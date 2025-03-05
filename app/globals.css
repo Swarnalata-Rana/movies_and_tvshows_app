@@ -1,5 +1,5 @@
 * {
-    background-color: black;
+    background-color: pink;
 }
 
 .navbar-main {
@@ -76,7 +76,7 @@
 
 .moviecard-main {
     width: 200px;
-    height: 300px;
+    /* height: 300px; */
     padding: 10.9px;
     background-color: white;
     border-radius: 8px;
@@ -87,7 +87,15 @@
 .detailing-rating{
     display: flex;
     justify-content: space-between;
-    color: white;
+    /* color: white;         */
 }
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+} 
+
 
 
