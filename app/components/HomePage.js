@@ -1,37 +1,44 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MovieContext } from "../context/MovieContext";
 import Search from "./Search";
 import MovieCard from "./MovieCard";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const HomePage = () => {
     const { movies, fetchMovies } = useContext(MovieContext);
 
-    if (movies.length === 0) {
+    // if (movies.length === 0) {
+    //     fetchMovies("avengers");
+    // }
+
+    useEffect(() => {
         fetchMovies("avengers");
-        // fetchMovies("batman");
-        // fetchMovies("spiderman");
-        // fetchMovies("the boss");
-    }
+    }, []);
 
     let moviecontent;
     if (movies.length > 0) {
         moviecontent = movies.map((movie) =>
-            <MovieCard key={movie.imdbID} movie={movie}
+            <MovieCard
+                key={movie.imdbID}
+                movie={movie}
             />);
     } else {
-        moviecontent = <p className="no-movies-found">No movies found!</p>;
+        moviecontent = <p className="no-movies-found">Oops! Sorry, no movies found.</p>;
     }
 
     return (
         <>
+            <Navbar />
             <Search onSearch={fetchMovies} />
             <div className="homepage-main">
                 <div className="movie-list">{moviecontent}</div>
             </div>
-
+            <Footer />
         </>
     );
 };
 
 export default HomePage;
+

@@ -1,5 +1,4 @@
 "use client";
-
 import React, { createContext, useState } from "react";
 
 export const MovieContext = createContext();
@@ -11,17 +10,20 @@ export const MovieProvider = ({ children }) => {
         fetch(`https://www.omdbapi.com/?s=${query}&apikey=9ac3240b`)
             .then(res => res.json())
             .then(data => {
-                console.log("API Response:", data);
+                // console.log("API Response:", data);
                 if (data.Response === "True") {
                     setMovies(data.Search);
-                } 
+                }
             })
-            // .catch(error => console.error("Network error:", error));
+            // .catch(error => console.error("Sorry Network Error:", error));
+        setMovies([]);
     }
 
     return (
-        <MovieContext.Provider value={{ movies, fetchMovies }}>
-            {children}
-        </MovieContext.Provider>
+        <>
+            <MovieContext.Provider value={{ movies, fetchMovies }}>
+                {children}
+            </MovieContext.Provider>
+        </>
     );
 };
